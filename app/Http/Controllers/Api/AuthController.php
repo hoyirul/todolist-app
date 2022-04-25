@@ -24,11 +24,11 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password'])
         ]);
 
-        $token = $user->createToken('auth_token')->plaintTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
         return $this->apiSuccess([
             'token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -38,8 +38,8 @@ class AuthController extends Controller
             return $this->apiError('Credentials not match', Response::HTTP_UNAUTHORIZED);
         }
         $user = User::where('email', $validated['email'])->first();
-        $token = $user->createToken('auth_token')->plaintTextToken;
-        
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return $this->apiSuccess([
             'token' => $token,
             'token_type' => 'Bearer',

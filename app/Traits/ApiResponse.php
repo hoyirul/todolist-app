@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-trait ApiResponse{
+trait ApiResponse
+{
     protected function apiSuccess($data, $code = 200, $message = null){
         return response()->json([
             'data' => $data,
